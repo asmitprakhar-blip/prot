@@ -21,36 +21,23 @@ const Navbar = () => {
     });
 
     smoother.scrollTop(0);
-    smoother.paused(true);
+    // Ensure the smooth scrolling is active immediately
+    smoother.paused(false);
 
-    let links = document.querySelectorAll(".header ul a");
-    links.forEach((elem) => {
-      let element = elem as HTMLAnchorElement;
-      element.addEventListener("click", (e) => {
-        if (window.innerWidth > 1024) {
-          e.preventDefault();
-          let elem = e.currentTarget as HTMLAnchorElement;
-          let section = elem.getAttribute("data-href");
-          smoother.scrollTo(section, true, "top top");
-        }
-      });
-    });
-    window.addEventListener("resize", () => {
-      ScrollSmoother.refresh(true);
-    });
+    document.body.style.overflow = "auto";
   }, []);
   return (
     <>
       <div className="header">
         <a href="/#" className="navbar-title" data-cursor="disable">
-          Logo
+          Aayan Jha
         </a>
         <a
-          href="mailto:example@mail.com"
+          href="mailto:aayanjha368@gmail.com"
           className="navbar-connect"
           data-cursor="disable"
         >
-          example@mail.com
+          aayanjha368@gmail.com
         </a>
         <ul>
           <li>

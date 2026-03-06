@@ -24,12 +24,30 @@ export const LoadingProvider = ({ children }: PropsWithChildren) => {
     setIsLoading,
     setLoading,
   };
-  useEffect(() => {}, [loading]);
+
+  useEffect(() => {
+    // Quick auto-loading sequence to ensure visibility
+    let current = 0;
+    const interval = setInterval(() => {
+      current += 5;
+      setLoading(current);
+      if (current >= 100) {
+        clearInterval(interval);
+        setTimeout(() => {
+          setIsLoading(false);
+          document.body.style.overflow = "auto";
+        }, 300);
+      }
+    }, 30);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <LoadingContext.Provider value={value as LoadingType}>
       {isLoading && <Loading percent={loading} />}
-      <main className="main-body">{children}</main>
+      <main className="main-body" style={{ opacity: 1, visibility: 'visible' }}>
+        {children}
+      </main>
     </LoadingContext.Provider>
   );
 };
