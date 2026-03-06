@@ -1,6 +1,8 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+// @ts-ignore
 import { ScrollSmoother } from "gsap-trial/ScrollSmoother";
+// @ts-ignore
 import { SplitText } from "gsap-trial/SplitText";
 
 interface ParaElement extends HTMLElement {
@@ -32,7 +34,7 @@ export default function setSplitText() {
     });
 
     para.anim = gsap.fromTo(
-      para.split.words,
+      para.split?.words as any,
       { autoAlpha: 0, y: 80 },
       {
         autoAlpha: 1,
@@ -58,7 +60,7 @@ export default function setSplitText() {
       linesClass: "split-line",
     });
     title.anim = gsap.fromTo(
-      title.split.chars,
+      title.split?.chars as any,
       { autoAlpha: 0, y: 80, rotate: 10 },
       {
         autoAlpha: 1,
